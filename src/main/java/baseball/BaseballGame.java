@@ -40,7 +40,21 @@ public class BaseballGame {
 
     public int receiveUserInput() {
         System.out.print("숫자를 입력해주세요 : ");
-        return Integer.parseInt(Console.readLine());
+
+        String input = Console.readLine();
+        validateInput(input);
+
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 입력 형식입니다.");
+        }
+    }
+
+    private void validateInput(String input) {
+        if (input.length() != 3) {
+            throw new IllegalArgumentException("잘못된 입력 형식입니다.");
+        }
     }
 
     public boolean score(int answer, int userAnswer) {
