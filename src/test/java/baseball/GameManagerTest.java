@@ -9,8 +9,4 @@ class GameManagerTest {
     @Test
     void start() {
     }
-
-    @Test
-    void restart() {
-    }
 }
