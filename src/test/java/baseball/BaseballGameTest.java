@@ -89,7 +89,7 @@ class BaseballGameTest {
         String output = outputStream.toString().trim();
 
         assertThat(result).isTrue();
-        assertThat(output).isEqualTo("3스트라이크\n" +
+        assertThat(output).isEqualTo("3스트라이크 \n" +
                 "3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
 }
