@@ -33,8 +33,8 @@ public class BaseballGame {
         return answer;
     }
 
-    public String receiveUserInput() {
-        return Console.readLine();
+    public int receiveUserInput() {
+        return Integer.parseInt(Console.readLine());
     }
 
     public boolean score(int answer, int userAnswer) {

@@ -53,13 +53,13 @@ class BaseballGameTest {
 
     @Test
     void receiveUserInput_유저의_입력을_반환한다() {
-        String input = "Hello, System.in!";
+        String input = "123";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        String result = baseballGame.receiveUserInput();
+        int result = baseballGame.receiveUserInput();
 
-        assertThat(result).isEqualTo(input);
+        assertThat(result).isEqualTo(Integer.parseInt(input));
     }
 
     @Test
