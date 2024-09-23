@@ -1,5 +1,6 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class BaseballGame {
     }
 
     public String receiveUserInput() {
-        return null;
+        return Console.readLine();
     }
 
     public boolean score(int answer, int userAnswer) {
