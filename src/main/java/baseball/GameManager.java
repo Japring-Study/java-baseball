@@ -21,18 +21,17 @@ public class GameManager {
             result = game.score(game.getAnswer(), userInput);
         }
 
-        askRestart();
+        String endInput = askRestart();
+        if (endInput.equals("1")) {
+            start();
+        }
+        if (endInput.equals("2")) {
+            return;
+        }
     }
 
-    private void askRestart() {
-        while (true) {
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            String endInput = Console.readLine();
-            if (endInput.equals("1")) {
-                start();
-            } else if (endInput.equals("2")) {
-                return;
-            }
-        }
+    private String askRestart() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return Console.readLine();
     }
 }

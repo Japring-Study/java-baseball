@@ -3,10 +3,11 @@ package baseball;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BaseballGame {
 
@@ -24,17 +25,21 @@ public class BaseballGame {
 
         AtomicInteger index = new AtomicInteger();
 
-        answer = Randoms.shuffle(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9)).stream()
-                .limit(3)
-                .reduce(0, (x, y) -> {
-                    int result = (int) (x + y * Math.pow(10, index.doubleValue()));
-                    index.getAndIncrement();
-                    return result;
-                });
+        LinkedHashSet<Integer> numbers = new LinkedHashSet<>();
+        while (numbers.size() < 3) {
+            numbers.add(Randoms.pickNumberInRange(1, 9));
+        }
+
+        answer = numbers.stream().reduce(0, (x, y) -> {
+            int result = (int) (x + y * Math.pow(10, 2 - index.doubleValue()));
+            index.getAndIncrement();
+            return result;
+        });
         return answer;
     }
 
     public int receiveUserInput() {
+        System.out.print("숫자를 입력해주세요 : ");
         return Integer.parseInt(Console.readLine());
     }
 
@@ -60,7 +65,7 @@ public class BaseballGame {
 
         StringBuilder sb = new StringBuilder();
         if (strike == 0 && ball == 0) {
-            sb.append("닛싱");
+            sb.append("낫싱");
         }
 
         if (ball > 0) {
@@ -78,9 +83,9 @@ public class BaseballGame {
         return false;
     }
 
-    private static List<Integer> getDigits(int answer) {
+    private static List<Integer> getDigits(int num) {
         List<Integer> answerNums = new ArrayList<>();
-        int current = answer;
+        int current = num;
         for (int i = 0; i < 3; i++) {
             answerNums.add(0, current % 10);
             current /= 10;
